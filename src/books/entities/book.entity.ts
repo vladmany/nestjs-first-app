@@ -12,11 +12,14 @@ export class Book {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false })
   title: string;
 
   @Column()
   description: string;
+
+  @Column({ nullable: false })
+  user_id: number;
 
   @ManyToMany(() => Genre, (genre) => genre.books)
   @JoinTable({

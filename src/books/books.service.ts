@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Req } from '@nestjs/common';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,11 +12,12 @@ export class BooksService {
     private repository: Repository<Book>,
   ) {}
 
-  create(data: CreateBookDto) {
+  create(data: CreateBookDto, userId: number) {
     const book: DeepPartial<Book> = {
       ...data,
       genres: data.genres.map((id) => ({ id })),
     };
+    book.user_id = userId;
     return this.repository.save(book);
   }
 

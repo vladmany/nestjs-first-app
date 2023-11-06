@@ -6,7 +6,7 @@ export class Genre {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false })
   name: string;
 
   @ManyToMany(() => Book, (book) => book.genres)
