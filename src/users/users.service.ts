@@ -17,15 +17,6 @@ export class UsersService {
     return this.repository.save(data);
   }
 
-  async login(data: CreateUserDto) {
-    const user = await this.repository.findOneBy({email: data.email});
-    if (!user) {
-      return false;
-    }
-
-    return await bcrypt.compare(data.password, user.password);
-  }
-
   findOne(email: string) {
     return this.repository.findOneBy({ email });
   }
