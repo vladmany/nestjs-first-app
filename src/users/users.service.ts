@@ -24,4 +24,12 @@ export class UsersService {
   findAll(): Promise<User[]> {
     return this.repository.find();
   }
+
+  find(options?) {
+    return this.repository.find(options);
+  }
+
+  async remove(options?) {
+    await this.repository.remove(options);
+  }
 }
